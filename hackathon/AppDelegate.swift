@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ECSlidingViewController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        tryToAutoLogin()
         return true
     }
 
@@ -39,6 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func tryToAutoLogin() {
+        if LoginManager().isLoggedIn {
+            let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController : ECSlidingViewController = mainStoryboard.instantiateViewController(withIdentifier: "MainVC") as! ECSlidingViewController
+            initialViewController.anchorRightRevealAmount = UIScreen.main.bounds.width * 0.7
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
     }
 
 

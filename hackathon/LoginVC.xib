@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginVC" customModule="hackathon" customModuleProvider="target">
+            <connections>
+                <outlet property="buttonCenterConstraint" destination="c8R-Vr-a54" id="6nr-SM-zhD"/>
+                <outlet property="errorLabel" destination="caO-ja-4pM" id="0KR-Hg-YMN"/>
+                <outlet property="loginButton" destination="Wr6-RG-f4n" id="9ph-N9-Drf"/>
+                <outlet property="loginField" destination="fJr-cG-EVU" id="VQS-Up-Qds"/>
+                <outlet property="loginTrailingConstraint" destination="11Z-zt-2cj" id="dV5-2s-BSG"/>
+                <outlet property="passwordField" destination="o9z-d2-nk1" id="gkL-a0-NlG"/>
+                <outlet property="passwordTrailingConstraint" destination="cKC-qJ-MGn" id="K95-di-jLi"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o9z-d2-nk1">
+                    <rect key="frame" x="45" y="310" width="300" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9L3-VM-RNj"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fJr-cG-EVU">
+                    <rect key="frame" x="45" y="250" width="300" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="JRM-qA-hRr"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wr6-RG-f4n">
+                    <rect key="frame" x="74.5" y="370" width="225" height="30"/>
+                    <color key="backgroundColor" red="0.92549019610000005" green="0.81568627449999997" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="cxZ-4A-1D6"/>
+                    </constraints>
+                    <state key="normal" title="Enter">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                    <connections>
+                        <action selector="loginButtonPressed" destination="-1" eventType="touchDown" id="jvs-UJ-NGE"/>
+                        <action selector="loginButtonUnpressed" destination="-1" eventType="touchUpInside" id="6ok-eY-sdo"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caO-ja-4pM">
+                    <rect key="frame" x="-0.5" y="430" width="375" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="iql-xR-tmG"/>
+                    </constraints>
+                    <attributedString key="attributedText">
+                        <fragment content="Incorrect login or password!">
+                            <attributes>
+                                <color key="NSColor" red="1" green="0.0" blue="0.15829262550123457" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" metaFont="system" size="17"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.61641642535392482" green="0.35078377195639832" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fJr-cG-EVU" secondAttribute="trailing" constant="30" id="11Z-zt-2cj"/>
+                <constraint firstItem="caO-ja-4pM" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="2P6-od-au5"/>
+                <constraint firstItem="Wr6-RG-f4n" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.6" id="9bh-QA-fhv"/>
+                <constraint firstItem="Wr6-RG-f4n" firstAttribute="top" secondItem="o9z-d2-nk1" secondAttribute="bottom" constant="30" id="EUV-P1-B1g"/>
+                <constraint firstItem="caO-ja-4pM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JgM-NF-AfA"/>
+                <constraint firstItem="o9z-d2-nk1" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="YRZ-bK-ej1"/>
+                <constraint firstItem="fJr-cG-EVU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="250" id="Zhr-8e-gvu"/>
+                <constraint firstItem="caO-ja-4pM" firstAttribute="top" secondItem="Wr6-RG-f4n" secondAttribute="bottom" constant="30" id="agQ-Bw-mgS"/>
+                <constraint firstItem="Wr6-RG-f4n" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c8R-Vr-a54"/>
+                <constraint firstAttribute="trailing" secondItem="o9z-d2-nk1" secondAttribute="trailing" constant="30" id="cKC-qJ-MGn"/>
+                <constraint firstItem="o9z-d2-nk1" firstAttribute="top" secondItem="fJr-cG-EVU" secondAttribute="bottom" constant="30" id="sPn-iX-W5Y"/>
+                <constraint firstItem="fJr-cG-EVU" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="tq8-Qk-Anr"/>
+            </constraints>
+            <point key="canvasLocation" x="27.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

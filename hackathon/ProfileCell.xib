@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCellIdentifier" id="KGk-i7-Jjw" customClass="ProfileCell" customModule="hackathon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="NHD-HX-CHX">
+                        <rect key="frame" x="8" y="3.5" width="50.5" height="51"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="NHD-HX-CHX" secondAttribute="height" multiplier="1:1" id="acX-Op-fMh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sergey Isupov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmf-xw-vU0">
+                        <rect key="frame" x="68.5" y="4" width="243.5" height="51"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.070451460778713226" green="0.22295120358467102" blue="0.273193359375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.46794814109999999" green="0.72048841220000004" blue="0.98010951280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="NHD-HX-CHX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="0ZM-q6-AQ5"/>
+                    <constraint firstItem="NHD-HX-CHX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="2LX-ze-4nb"/>
+                    <constraint firstItem="nmf-xw-vU0" firstAttribute="leading" secondItem="NHD-HX-CHX" secondAttribute="trailing" constant="10" id="BwR-of-D6c"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nmf-xw-vU0" secondAttribute="trailing" id="QSd-j4-hhq"/>
+                    <constraint firstItem="nmf-xw-vU0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.85" id="cUc-ZC-goq"/>
+                    <constraint firstItem="nmf-xw-vU0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sVp-WN-IQq"/>
+                    <constraint firstItem="NHD-HX-CHX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.85" id="sfk-yD-2Io"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="profileImage" destination="NHD-HX-CHX" id="GI5-2u-9xJ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="profileEmpty" width="225" height="225"/>
+    </resources>
+</document>
