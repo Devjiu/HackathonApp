@@ -20,6 +20,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
     
     var cellHeights = [50.0, 50.0, 50.0]
     var cellNames = ["Интересы:", "Навыки:", "Достижения:"]
+    var cellColors = [color1, color3, color2]
     
     @IBAction func buttonPressed() {
         if(self.slidingViewController().currentTopViewPosition == ECSlidingViewControllerTopViewPosition.centered){
@@ -33,6 +34,14 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
         setupProfileImage()
         setupEditButton()
         setupTableView()
+        setupUserData()
+        view.backgroundColor = color4
+        tableView.backgroundColor = color6
+        editButton.backgroundColor = color5
+        nameLabel.textColor = color2
+        commentLabel.textColor = color2
+        statusLabel.textColor = color2
+        editButton.setTitleColor(color2, for: UIControlState.normal)
     }
     
     
@@ -60,6 +69,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
         tableView.register(UINib(nibName: "ProfileInterestCell", bundle: nil), forCellReuseIdentifier: "ProfileInterestCellId")
     }
     
@@ -80,6 +90,10 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
         cell.indexPath = indexPath.row
         cell.delegate = self
         cell.nameLabel.text = cellNames[indexPath.row]
+        if cell.color != cellColors[indexPath.row] {
+            cell.color = cellColors[indexPath.row]
+        }
+        cell.fillCell(row: indexPath.row)
         if cellHeights[indexPath.row] != Double(cell.height) {
             if cell.labels.count == 0 {
                 return cell
@@ -89,6 +103,12 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
         }
         return cell
     }
-
+    
+    func setupUserData() {
+        profileImage.image = Profile.user.photo ?? UIImage(named: "profileEmpty")!
+        nameLabel.text = Profile.user.name
+        statusLabel.text = Profile.user.status
+        commentLabel.text = Profile.user.comment
+    }
 
 }

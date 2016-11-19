@@ -10,13 +10,14 @@ import UIKit
 
 class MenuCell: UITableViewCell {
 
-    let labels = ["Участники", "Лабы", "Проекты", "Чат", "Гранты"]
+    let labels = ["Участники", "Лабы", "Проекты", "События", "Чат", "Гранты"]
     
     
     @IBOutlet weak var menuLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        contentView.backgroundColor = color4
+        menuLabel.textColor = color2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

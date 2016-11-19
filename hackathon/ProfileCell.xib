@@ -47,6 +47,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="profileImage" destination="NHD-HX-CHX" id="GI5-2u-9xJ"/>
+                <outlet property="profileName" destination="nmf-xw-vU0" id="zf8-oL-epm"/>
             </connections>
         </tableViewCell>
     </objects>

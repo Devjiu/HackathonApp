@@ -20,7 +20,9 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.isScrollEnabled = false
         self.tableView.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: "MenuCellIdentifier")
         self.tableView.register(UINib(nibName: "ProfileCell", bundle: nil), forCellReuseIdentifier: "ProfileCellIdentifier")
-
+        tableView.backgroundColor = color4
+        view.backgroundColor = color4
+        tableView.tableFooterView = UIView()
         // Do any additional setup after loading the view.
     }
     
@@ -40,7 +42,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -60,6 +62,15 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if row == 0 {
             self.slidingViewController().topViewControllerStoryboardId = "profileVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "profileVC")
+        } else if row == 1 {
+            self.slidingViewController().topViewControllerStoryboardId = "usersVC"
+            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "usersVC")
+        } else if row == 2 {
+            self.slidingViewController().topViewControllerStoryboardId = "labsVC"
+            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+        } else if row == 3 {
+            self.slidingViewController().topViewControllerStoryboardId = "usersVC"
+            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "usersVC")
         } else {
             self.slidingViewController().topViewControllerStoryboardId = "topVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "topVC")

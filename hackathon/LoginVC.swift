@@ -11,10 +11,8 @@ import ECSlidingViewController
 
 class LoginVC: UIViewController {
     
-    let pressedColor = UIColor(colorLiteralRed: 206/255, green: 178/255, blue: 112/255, alpha: 1)
-
-    let unpressedColor = UIColor(colorLiteralRed: 236/255, green: 208/255, blue: 142/255, alpha: 1)
-
+    let pressedColor = color3
+    let unpressedColor = color1
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -78,6 +76,7 @@ class LoginVC: UIViewController {
     }
     
     func setupViews() {
+        view.backgroundColor = color4
         loginButton.layer.cornerRadius = 5.0
         loginButton.backgroundColor = unpressedColor
         errorLabel.alpha = 0
