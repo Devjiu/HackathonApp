@@ -65,16 +65,16 @@ class ProfileInterestCell: UITableViewCell {
         }
     }
     
-    func fillCell(row: Int) {
+    func fillCell(row: Int, user: Profile) {
         switch row {
         case 0:
-            fillStackView(labels: Profile.user.interests)
+            fillStackView(labels: user.interests)
             break
         case 1:
-            fillStackView(labels: Profile.user.skills)
+            fillStackView(labels: user.skills)
             break
         case 2:
-            fillStackView(labels: Profile.user.achievements)
+            fillStackView(labels: user.achievements)
             break
         default:
             break

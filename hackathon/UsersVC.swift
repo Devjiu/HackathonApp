@@ -47,6 +47,7 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "UserSearchCell", bundle: nil), forCellReuseIdentifier: "SearchUserCellId")
+        tableView.tableFooterView = UIView()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,6 +84,7 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        openUserProfile(profile: users[indexPath.row])
     }
     
     func reloadDataWithUsers(users: [Profile]) {
@@ -91,6 +93,13 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
+    }
+    
+    func openUserProfile(profile: Profile) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "profileVC")
+        (vc as! ProfileVC).mode = .Other
+        (vc as! ProfileVC).user = profile
+        self.present(vc!, animated: true) {
+        }
     }
 }

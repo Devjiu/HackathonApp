@@ -9,10 +9,18 @@
 import UIKit
 import ECSlidingViewController
 
+enum EventsMode {
+    case Labs
+    case Projects
+    case Events
+}
+
 class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    var mode = EventsMode.Labs
     
     var labsCount: Int = 5
     var labs = [Lab(), Lab(), Lab(), Lab(), Lab()]
@@ -47,6 +55,7 @@ class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "LabsCell", bundle: nil), forCellReuseIdentifier: "LabsCellId")
+        tableView.tableFooterView = UIView()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,6 +91,7 @@ class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        openLab(lab: labs[indexPath.row])
     }
     
     func reloadDataWithLabs(labs: [Lab]) {
@@ -91,6 +101,13 @@ class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.tableView.reloadData()
         }
         
+    }
+    
+    func openLab(lab: Lab) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "labVC") as! SingleLabVC
+        vc.lab = lab
+        self.present(vc, animated: true) {
+        }
     }
 
 

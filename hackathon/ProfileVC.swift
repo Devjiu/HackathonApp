@@ -9,6 +9,11 @@
 import UIKit
 import ECSlidingViewController
 
+enum ProfileMode {
+    case Owner
+    case Other
+}
+
 class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, ProfileInterestCellDelegate {
 
     @IBOutlet weak var commentLabel: UILabel!
@@ -22,11 +27,19 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
     var cellNames = ["Интересы:", "Навыки:", "Достижения:"]
     var cellColors = [color1, color3, color2]
     
+    var user = Profile.user
+    var mode = ProfileMode.Owner
+    
     @IBAction func buttonPressed() {
-        if(self.slidingViewController().currentTopViewPosition == ECSlidingViewControllerTopViewPosition.centered){
-            self.slidingViewController().anchorTopViewToRight(animated: true)
+        if mode == .Owner {
+            if(self.slidingViewController().currentTopViewPosition == ECSlidingViewControllerTopViewPosition.centered){
+                self.slidingViewController().anchorTopViewToRight(animated: true)
+            } else {
+                self.slidingViewController().resetTopView(animated: true)
+            }
         } else {
-            self.slidingViewController().resetTopView(animated: true)
+            dismiss(animated: true) {
+            }
         }
     }
     override func viewDidLoad() {
@@ -62,6 +75,9 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
     }
     
     func setupEditButton() {
+        if mode == .Other {
+            editButton.setTitle("Отправить сообщение", for: UIControlState.normal)
+        }
         editButton.layer.cornerRadius = 10
     }
     
@@ -93,7 +109,7 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
         if cell.color != cellColors[indexPath.row] {
             cell.color = cellColors[indexPath.row]
         }
-        cell.fillCell(row: indexPath.row)
+        cell.fillCell(row: indexPath.row, user: user)
         if cellHeights[indexPath.row] != Double(cell.height) {
             if cell.labels.count == 0 {
                 return cell
@@ -105,10 +121,10 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource, P
     }
     
     func setupUserData() {
-        profileImage.image = Profile.user.photo ?? UIImage(named: "profileEmpty")!
-        nameLabel.text = Profile.user.name
-        statusLabel.text = Profile.user.status
-        commentLabel.text = Profile.user.comment
+        profileImage.image = user.photo ?? UIImage(named: "profileEmpty")!
+        nameLabel.text = user.name
+        statusLabel.text = user.status
+        commentLabel.text = user.comment
     }
 
 }

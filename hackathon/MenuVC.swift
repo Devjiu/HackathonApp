@@ -69,8 +69,8 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.slidingViewController().topViewControllerStoryboardId = "labsVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
         } else if row == 3 {
-            self.slidingViewController().topViewControllerStoryboardId = "usersVC"
-            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "usersVC")
+            self.slidingViewController().topViewControllerStoryboardId = "labsVC"
+            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
         } else {
             self.slidingViewController().topViewControllerStoryboardId = "topVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "topVC")

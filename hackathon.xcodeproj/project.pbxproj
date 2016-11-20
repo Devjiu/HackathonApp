@@ -34,6 +34,8 @@
 		F8E6DD1F1DE10A3000C56E4E /* LabsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DD1D1DE10A3000C56E4E /* LabsCell.swift */; };
 		F8E6DD201DE10A3000C56E4E /* LabsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8E6DD1E1DE10A3000C56E4E /* LabsCell.xib */; };
 		F8E6DD221DE10C9E00C56E4E /* Lab.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DD211DE10C9E00C56E4E /* Lab.swift */; };
+		F8E6DD241DE125A300C56E4E /* SingleLabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DD231DE125A300C56E4E /* SingleLabVC.swift */; };
+		F8E6DD261DE1341B00C56E4E /* HTTPSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DD251DE1341B00C56E4E /* HTTPSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		F8E6DD1D1DE10A3000C56E4E /* LabsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabsCell.swift; sourceTree = "<group>"; };
 		F8E6DD1E1DE10A3000C56E4E /* LabsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabsCell.xib; sourceTree = "<group>"; };
 		F8E6DD211DE10C9E00C56E4E /* Lab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lab.swift; sourceTree = "<group>"; };
+		F8E6DD231DE125A300C56E4E /* SingleLabVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLabVC.swift; sourceTree = "<group>"; };
+		F8E6DD251DE1341B00C56E4E /* HTTPSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				F8E6DCF91DE09D1900C56E4E /* Constants.swift */,
 				F82E55FC1DE052F4000A84D5 /* Main.storyboard */,
 				F8E6DD181DE0E5E400C56E4E /* HTTPRequests.swift */,
+				F8E6DD251DE1341B00C56E4E /* HTTPSupport.swift */,
 				F82E56101DE07F2A000A84D5 /* Login */,
 				F8E6DD0A1DE0BE0100C56E4E /* Profile */,
 				F8E6DD081DE0B3D800C56E4E /* SecondVC.swift */,
@@ -184,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				F8E6DD1A1DE109ED00C56E4E /* LabsVC.swift */,
+				F8E6DD231DE125A300C56E4E /* SingleLabVC.swift */,
 				F8E6DD211DE10C9E00C56E4E /* Lab.swift */,
 				F8E6DD1D1DE10A3000C56E4E /* LabsCell.swift */,
 				F8E6DD1E1DE10A3000C56E4E /* LabsCell.xib */,
@@ -333,8 +339,10 @@
 				F8E6DD091DE0B3D800C56E4E /* SecondVC.swift in Sources */,
 				F82E560F1DE07ACF000A84D5 /* LoginManager.swift in Sources */,
 				F8E6DD061DE0AA6C00C56E4E /* ProfileCell.swift in Sources */,
+				F8E6DD241DE125A300C56E4E /* SingleLabVC.swift in Sources */,
 				F8E6DD1F1DE10A3000C56E4E /* LabsCell.swift in Sources */,
 				F8E6DCF81DE09A5C00C56E4E /* ProfileVC.swift in Sources */,
+				F8E6DD261DE1341B00C56E4E /* HTTPSupport.swift in Sources */,
 				F8E6DD191DE0E5E400C56E4E /* HTTPRequests.swift in Sources */,
 				F8E6DCFD1DE09E4800C56E4E /* MenuVC.swift in Sources */,
 				F8E6DD121DE0D64C00C56E4E /* UsersVC.swift in Sources */,

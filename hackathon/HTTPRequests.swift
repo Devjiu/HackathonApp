@@ -9,83 +9,42 @@
 import Foundation
 import SwiftyJSON
 
+let SERVER_URL = "http://127.0.0.1:8000/server/"
 
 func getUsers(completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = "http://127.0.0.1:8000/server/getusers/"
+    let scriptUrl = SERVER_URL + "getusers/"
     let myUrl = URL(string: scriptUrl)
-    let request = NSMutableURLRequest(url:myUrl!)
-    request.httpMethod = "GET"
-    
-    let task = URLSession.shared.dataTask(with: request as URLRequest) {
-        data, response, error in
-
-        if error != nil
-        {
-            print("error=\(error)")
-            completion(nil, 1)
-        }
-        if let data = data {
-            let responseString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
-            
-            let json = JSON(data: data)
-            let countUsers = json.count
-            var profiles = [Profile]()
-            for i in 0..<countUsers {
-                var name: String = json[i]["first_name"].rawString()!
-                name = name.appending(" ").appending(json[i]["last_name"].rawString()!)
-                let person = Profile()
-                person.name = name
-                profiles.append(person)
-            }
-            completion(profiles, nil)
-            
-            } else {
-            completion(nil, 3)
-        }
-        
+    dataTaskUsers(url: myUrl!) {
+        response, error in
+        completion(response as? [Profile], error)
     }
-    
-    task.resume()
 }
 
 func getLabs(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    completion([Lab(), Lab()], nil)
-    return
-    let scriptUrl = "http://127.0.0.1:8000/server/getlabs/"
+    let scriptUrl = SERVER_URL + "getlabs/"
     let myUrl = URL(string: scriptUrl)
-    let request = NSMutableURLRequest(url:myUrl!)
-    request.httpMethod = "GET"
-    
-    let task = URLSession.shared.dataTask(with: request as URLRequest) {
-        data, response, error in
-        
-        if error != nil
-        {
-            print("error=\(error)")
-            completion(nil, 1)
-        }
-        if let data = data {
-            let responseString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-            print("responseString = \(responseString)")
-            
-            let json = JSON(data: data)
-            let countLabs = json.count
-            var labs = [Lab]()
-            for i in 0..<countLabs {
-//                var name: String = json[i]["first_name"].rawString()!
-//                name = name.appending(" ").appending(json[i]["last_name"].rawString()!)
-//                let person = Profile()
-//                person.name = name
-//                profiles.append(person)
-            }
-            completion(labs, nil)
-            
-        } else {
-            completion(nil, 3)
-        }
-        
+    dataTaskLabs(url: myUrl!) {
+        response, error in
+        completion(response as? [Lab], error)
     }
-    
-    task.resume()
+}
+
+func getLabUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
+    let scriptUrl = SERVER_URL + "getlabusers/"
+    let urlWithParams = scriptUrl + "?id=\(labId)"
+    let myUrl = URL(string: urlWithParams)
+    dataTaskUsers(url: myUrl!) {
+        response, error in
+        completion(response as? [Profile], error)
+    }
+}
+
+func searchUser(string: String, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
+    let scriptUrl = SERVER_URL + "searchusers/"
+    let urlWithParams = scriptUrl + "?string=\(string)"
+    let myUrl = URL(string: urlWithParams)
+    dataTaskUsers(url: myUrl!) {
+        response, error in
+        completion(response as? [Profile], error)
+    }
 }
