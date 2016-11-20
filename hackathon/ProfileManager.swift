@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Profile {
-    
+    var id: Int
     var photo: UIImage?
     var name: String
     var status: String
@@ -19,7 +19,7 @@ class Profile {
     var skills: [String]
     var achievements: [String]
     
-    init(name: String, status: String, comment: String?, interests: [String], skills: [String], achievements: [String], photo: UIImage?) {
+    init(name: String, status: String, comment: String?, interests: [String], skills: [String], achievements: [String], photo: UIImage?, id: Int) {
         self.name = name
         self.status = status
         self.comment = comment
@@ -27,6 +27,7 @@ class Profile {
         self.skills = skills
         self.achievements = achievements
         self.photo = photo
+        self.id = id
     }
     
     init() {
@@ -37,7 +38,14 @@ class Profile {
         self.skills = ["Everything"]
         self.achievements = ["Force knowledge"]
         self.photo = UIImage(named: "yoda")
+        self.id = 0
     }
     
-    static let user = Profile(name: "Sergey Isupov", status: "5 курс", comment: "Comment", interests: ["iOS", "Math", "C++"], skills: ["iOS", "C++", "Something"], achievements: ["None"], photo: nil)
+    static var user: Profile {
+        if LoginManager().isIsupovLogin {
+            return Profile(name: "Sergey Isupov", status: "5 курс", comment: "Comment", interests: ["iOS", "Math", "C++"], skills: ["iOS", "C++", "Something"], achievements: ["None"], photo: nil, id: 777)
+        } else {
+            return Profile(name: "Petr Kurapov", status: "Student", comment: "Hello world!", interests: ["yoga", "snowboarding", "programming"], skills: ["Java", "Django", "Python", "C++"], achievements: [], photo: nil, id: 17)
+        }
+    }
 }

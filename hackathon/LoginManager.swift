@@ -8,7 +8,8 @@
 
 import Foundation
 
-let LOGIN_HARDCODE = "abc"
+let LOGIN_HARDCODE_ISUPOV = "isupov"
+let LOGIN_HARDCODE_KURAPOV = "kurapov"
 let PASSWORD_HARDCODE = "123"
 
 class LoginManager {
@@ -23,7 +24,12 @@ class LoginManager {
     
     func check() -> Bool {
         if let login = loginInput, let password = passwordInput {
-            if login == LOGIN_HARDCODE && password == PASSWORD_HARDCODE {
+            if login == LOGIN_HARDCODE_ISUPOV && password == PASSWORD_HARDCODE {
+                setUser(isupov: true)
+                return true
+            }
+            if login == LOGIN_HARDCODE_KURAPOV && password == PASSWORD_HARDCODE {
+                setUser(isupov: false)
                 return true
             }
         }
@@ -38,6 +44,24 @@ class LoginManager {
         UserDefaults.standard.set(logged, forKey: "isLoggedIn")
     }
     
+    func setUser(isupov: Bool) {
+        UserDefaults.standard.set(isupov, forKey: "who")
+    }
+    
+    var isIsupovLogin: Bool {
+        return UserDefaults.standard.bool(forKey: "who")
+    }
+    
+    func saveServer(text: String?) {
+        if let text = text, text != "" {
+            UserDefaults.standard.set(text, forKey: "serverURL")
+        } else {
+            UserDefaults.standard.set(SERVER_URL, forKey: "serverURL")
+        }
+    }
+    var server: String {
+        return UserDefaults.standard.value(forKey: "serverURL") as! String
+    }
     
     
 }

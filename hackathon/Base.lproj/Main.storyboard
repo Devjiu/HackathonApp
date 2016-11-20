@@ -16,7 +16,7 @@
         <!--Hackathon App-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="hackathon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="hackathon" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Hackathon App" id="86y-tf-P1o">
                         <barButtonItem key="backBarButtonItem" title="11" id="zya-IF-P2t"/>
                     </navigationItem>

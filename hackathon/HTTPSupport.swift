@@ -21,6 +21,9 @@ func usersFromData(data: Data) -> [Profile] {
         person.status = json[i]["status"].rawString()!
         person.comment = json[i]["comment"].rawString()!
         person.skills = []
+        if let id = json[i]["member_id"].rawValue as? Int {
+            person.id = id
+        }
         let skills = json[i]["skills"]
         for j in 0..<skills.count {
             let text = "skill".appending(String(j + 1))
@@ -119,6 +122,31 @@ func dataTaskUsers(url: URL, completion: @escaping (AnyObject?, Int?) -> Void) {
             
         } else {
             completion(nil, 3)
+        }
+        
+    }
+    
+    task.resume()
+}
+
+func getRequest(url: URL, completion: @escaping (Int?) -> Void) {
+    let request = NSMutableURLRequest(url: url)
+    request.httpMethod = "GET"
+    
+    let task = URLSession.shared.dataTask(with: request as URLRequest) {
+        data, response, error in
+        
+        if error != nil
+        {
+            print("error=\(error)")
+            completion(1)
+        }
+        if let data = data {
+            let responseString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+            print("responseString = \(responseString)")
+            completion(nil)
+        } else {
+            completion(3)
         }
         
     }

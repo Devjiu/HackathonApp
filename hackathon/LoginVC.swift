@@ -22,12 +22,14 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonCenterConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var serverField: UITextField!
     let loginManager = LoginManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
         setupViews()
+        serverField.text = SERVER_URL
 
     }
     
@@ -43,6 +45,7 @@ class LoginVC: UIViewController {
     @IBAction func loginButtonPressed() {
         // Touch Down
         loginButton.backgroundColor = pressedColor
+        LoginManager().saveServer(text: serverField.text)
     }
     
     @IBAction func loginButtonUnpressed() {

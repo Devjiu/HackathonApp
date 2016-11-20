@@ -42,7 +42,7 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return 8
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -81,6 +81,11 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
             (vc as! LabsVC).mode = .Events
             self.slidingViewController().topViewController = vc
+        } else if row == 7 {
+            self.slidingViewController().topViewControllerStoryboardId = "loginVC"
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC")
+            self.slidingViewController().topViewController = vc
+            LoginManager().setLoggedIn(logged: false)
         } else {
             self.slidingViewController().topViewControllerStoryboardId = "topVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "topVC")

@@ -25,6 +25,8 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var usersCount = 5
     var users = [Profile(), Profile(), Profile(), Profile(), Profile()]
     
+    var isHere: Bool = false
+    
     @IBAction func buttonPressed() {
         self.dismiss(animated: true) {
         }
@@ -45,6 +47,16 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
 
     @IBAction func acceptButtonPressed() {
+        var type = 0
+        if lab.mode == .Projects {
+            type = 1
+        } else if lab.mode == .Events {
+            type = 2
+        }
+        acceptLab(labId: lab.id, accept: !isHere, type: type) {
+            error in
+            self.getUsers()
+        }
     }
     
     func setupUI() {
@@ -56,7 +68,6 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         stackView.spacing = 5
         stackView.alignment = UIStackViewAlignment.leading
         skillsLabel.textColor = color2
-        acceptButton.setTitle("Принять участие", for: UIControlState.normal)
         acceptButton.setTitleColor(color2, for: UIControlState.normal)
         acceptButton.backgroundColor = color5
         acceptButton.layer.cornerRadius = 10
@@ -95,6 +106,19 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         self.users = profiles
         self.usersCount = profiles.count
         DispatchQueue.main.async {
+            var found = false
+            for usr in self.users {
+                if usr.id == Profile.user.id {
+                    self.acceptButton.setTitle("Отказаться от участия", for: UIControlState.normal)
+                    self.isHere = true
+                    found = true
+                    break
+                }
+            }
+            if !found {
+                self.acceptButton.setTitle("Принять участие", for: UIControlState.normal)
+                self.isHere = false
+            }
             self.tableView.reloadData()
         }
     }

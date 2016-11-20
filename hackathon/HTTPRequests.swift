@@ -12,7 +12,7 @@ import SwiftyJSON
 let SERVER_URL = "http://127.0.0.1:8000/server/"
 
 func getUsers(completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getusers/"
+    let scriptUrl = LoginManager().server + "getusers/"
     let myUrl = URL(string: scriptUrl)
     dataTaskUsers(url: myUrl!) {
         response, error in
@@ -21,7 +21,7 @@ func getUsers(completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> V
 }
 
 func getLabs(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getlabs/"
+    let scriptUrl = LoginManager().server + "getlabs/"
     let myUrl = URL(string: scriptUrl)
     dataTaskLabs(url: myUrl!) {
         response, error in
@@ -30,7 +30,7 @@ func getLabs(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) 
 }
 
 func getProjects(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getprojects/"
+    let scriptUrl = LoginManager().server + "getprojects/"
     let myUrl = URL(string: scriptUrl)
     dataTaskLabs(url: myUrl!) {
         response, error in
@@ -39,7 +39,7 @@ func getProjects(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Vo
 }
 
 func getEvents(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getevents/"
+    let scriptUrl = LoginManager().server + "getevents/"
     let myUrl = URL(string: scriptUrl)
     dataTaskLabs(url: myUrl!) {
         response, error in
@@ -48,7 +48,7 @@ func getEvents(completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void
 }
 
 func getLabUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getlabusers/"
+    let scriptUrl = LoginManager().server + "getlabusers/"
     let urlWithParams = scriptUrl + "?id=\(labId)"
     let myUrl = URL(string: urlWithParams)
     dataTaskUsers(url: myUrl!) {
@@ -58,7 +58,7 @@ func getLabUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ er
 }
 
 func getProjectUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "getprojectusers/"
+    let scriptUrl = LoginManager().server + "getprojectusers/"
     let urlWithParams = scriptUrl + "?id=\(labId)"
     let myUrl = URL(string: urlWithParams)
     dataTaskUsers(url: myUrl!) {
@@ -68,7 +68,7 @@ func getProjectUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, 
 }
 
 func getEventUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "geteventusers/"
+    let scriptUrl = LoginManager().server + "geteventusers/"
     let urlWithParams = scriptUrl + "?id=\(labId)"
     let myUrl = URL(string: urlWithParams)
     dataTaskUsers(url: myUrl!) {
@@ -78,8 +78,8 @@ func getEventUsers(labId: Int, completion: @escaping (_ profiles: [Profile]?, _ 
 }
 
 func searchUsers(text: String, completion: @escaping (_ profiles: [Profile]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "searchusers/"
-    let urlWithParams = scriptUrl + "?string=\(text)"
+    let scriptUrl = LoginManager().server + "searchusers/"
+    let urlWithParams = scriptUrl + "?\(text)"
     let myUrl = URL(string: urlWithParams)
     dataTaskUsers(url: myUrl!) {
         response, error in
@@ -88,8 +88,8 @@ func searchUsers(text: String, completion: @escaping (_ profiles: [Profile]?, _ 
 }
 
 func searchLabs(text: String, completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "searchlabs/"
-    let urlWithParams = scriptUrl + "?string=\(text)"
+    let scriptUrl = LoginManager().server + "searchlabs/"
+    let urlWithParams = scriptUrl + "?\(text)"
     let myUrl = URL(string: urlWithParams)
     dataTaskLabs(url: myUrl!) {
         response, error in
@@ -98,8 +98,8 @@ func searchLabs(text: String, completion: @escaping (_ profiles: [Lab]?, _ error
 }
 
 func searchProjects(text: String, completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "searchprojects/"
-    let urlWithParams = scriptUrl + "?string=\(text)"
+    let scriptUrl = LoginManager().server + "searchprojects/"
+    let urlWithParams = scriptUrl + "?\(text)"
     let myUrl = URL(string: urlWithParams)
     dataTaskLabs(url: myUrl!) {
         response, error in
@@ -108,11 +108,21 @@ func searchProjects(text: String, completion: @escaping (_ profiles: [Lab]?, _ e
 }
 
 func searchEvents(text: String, completion: @escaping (_ profiles: [Lab]?, _ error: Int?) -> Void) {
-    let scriptUrl = SERVER_URL + "searchevents/"
-    let urlWithParams = scriptUrl + "?string=\(text)"
+    let scriptUrl = LoginManager().server + "searchevents/"
+    let urlWithParams = scriptUrl + "?\(text)"
     let myUrl = URL(string: urlWithParams)
     dataTaskLabs(url: myUrl!) {
         response, error in
         completion(response as? [Lab], error)
+    }
+}
+
+func acceptLab(labId: Int, accept: Bool, type: Int, completion: @escaping (_ error: Int?) -> Void) {
+    let scriptUrl = LoginManager().server + "acceptlab/"
+    let urlWithParams = scriptUrl + "?user=\(Profile.user.id)&lab=\(labId)&accept=\(accept ? 1 : 0)&type=\(type)"
+    let myUrl = URL(string: urlWithParams)
+    getRequest(url: myUrl!) {
+        error in
+        completion(error)
     }
 }

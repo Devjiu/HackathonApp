@@ -10,7 +10,7 @@ import UIKit
 
 class MenuCell: UITableViewCell {
 
-    let labels = ["Участники", "Лабы", "Проекты", "События", "Чат", "Гранты"]
+    let labels = ["Участники", "Лабы", "Проекты", "События", "Сообщения", "Гранты", "Выйти"]
     
     
     @IBOutlet weak var menuLabel: UILabel!
