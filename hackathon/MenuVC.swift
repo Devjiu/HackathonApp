@@ -67,10 +67,20 @@ class MenuVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "usersVC")
         } else if row == 2 {
             self.slidingViewController().topViewControllerStoryboardId = "labsVC"
-            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+            (vc as! LabsVC).mode = .Labs
+            self.slidingViewController().topViewController = vc
+            
         } else if row == 3 {
             self.slidingViewController().topViewControllerStoryboardId = "labsVC"
-            self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+            (vc as! LabsVC).mode = .Projects
+            self.slidingViewController().topViewController = vc
+        } else if row == 4 {
+            self.slidingViewController().topViewControllerStoryboardId = "labsVC"
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "labsVC")
+            (vc as! LabsVC).mode = .Events
+            self.slidingViewController().topViewController = vc
         } else {
             self.slidingViewController().topViewControllerStoryboardId = "topVC"
             self.slidingViewController().topViewController = self.storyboard?.instantiateViewController(withIdentifier: "topVC")

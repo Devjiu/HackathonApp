@@ -15,7 +15,7 @@ enum EventsMode {
     case Events
 }
 
-class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -39,16 +39,13 @@ class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = color4
         searchBar.barTintColor = color4
         tableView.backgroundColor = color6
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getLabs {
-            labs, error in
-            if error == nil && labs != nil {
-                self.reloadDataWithLabs(labs: labs!)
-            }
-        }
+        refresh()
+        
     }
     
     func setupTableView() {
@@ -106,7 +103,92 @@ class LabsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func openLab(lab: Lab) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "labVC") as! SingleLabVC
         vc.lab = lab
+        vc.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         self.present(vc, animated: true) {
+        }
+    }
+    
+    func refresh() {
+        switch mode {
+        case .Labs:
+            getLabs {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Labs
+                    }
+                }
+            }
+            break
+        case .Projects:
+            getProjects {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Projects
+                    }
+                }
+            }
+            break
+        case .Events:
+            getEvents {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Events
+                    }
+                }
+            }
+            break
+        }
+    }
+    
+    func search(text: String) {
+        switch mode {
+        case .Labs:
+            searchLabs(text: text) {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Labs
+                    }
+                }
+            }
+            break
+        case .Projects:
+            searchProjects(text: text) {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Projects
+                    }
+                }
+            }
+            break
+        case .Events:
+            searchEvents(text: text) {
+                labs, error in
+                if error == nil && labs != nil {
+                    self.reloadDataWithLabs(labs: labs!)
+                    for lab in self.labs {
+                        lab.mode = .Events
+                    }
+                }
+            }
+            break
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count == 0 {
+            refresh()
+        } else if searchText.characters.count >= 3 {
+            search(text: searchText)
         }
     }
 

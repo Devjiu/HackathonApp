@@ -13,6 +13,8 @@ class Lab {
     var description: String
     var skills: [String]
     var id: Int
+    var time: String?
+    var mode = EventsMode.Labs
     
     init() {
         name = "Lab Example"

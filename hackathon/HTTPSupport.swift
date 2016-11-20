@@ -59,6 +59,7 @@ func labsFromData(data: Data) -> [Lab] {
         lab.description = descr
         let id = json[i]["project_id"].rawValue
         lab.id = id as! Int
+        lab.time = json[i]["time"].rawString()
         lab.skills = []
         let skills = json[i]["skills"]
         for j in 0..<skills.count {

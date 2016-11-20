@@ -9,7 +9,7 @@
 import UIKit
 import ECSlidingViewController
 
-class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +31,7 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = color4
         searchBar.barTintColor = color4
         tableView.backgroundColor = color6
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +100,26 @@ class UsersVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "profileVC")
         (vc as! ProfileVC).mode = .Other
         (vc as! ProfileVC).user = profile
+        vc!.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         self.present(vc!, animated: true) {
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count == 0 {
+            getUsers {
+                profiles, error in
+                if error == nil && profiles != nil {
+                    self.reloadDataWithUsers(users: profiles!)
+                }
+            }
+        } else if searchText.characters.count >= 3 {
+            searchUsers(text: searchText) {
+                profiles, error in
+                if error == nil && profiles != nil {
+                    self.reloadDataWithUsers(users: profiles!)
+                }
+            }
         }
     }
 }

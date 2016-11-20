@@ -41,12 +41,7 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getLabUsers(labId: lab.id) {
-            profiles, error in
-            if error == nil && profiles != nil {
-                self.reloadUsers(profiles: profiles!)
-            }
-        }
+        getUsers()
     }
 
     @IBAction func acceptButtonPressed() {
@@ -152,7 +147,37 @@ class SingleLabVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "profileVC")
         (vc as! ProfileVC).mode = .Other
         (vc as! ProfileVC).user = profile
+        vc!.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         self.present(vc!, animated: true) {
+        }
+    }
+    
+    func getUsers() {
+        switch lab.mode {
+        case .Labs:
+            getLabUsers(labId: lab.id) {
+                profiles, error in
+                if error == nil && profiles != nil {
+                    self.reloadUsers(profiles: profiles!)
+                }
+            }
+            break
+        case .Projects:
+            getProjectUsers(labId: lab.id) {
+                profiles, error in
+                if error == nil && profiles != nil {
+                    self.reloadUsers(profiles: profiles!)
+                }
+            }
+            break
+        case .Events:
+            getEventUsers(labId: lab.id) {
+                profiles, error in
+                if error == nil && profiles != nil {
+                    self.reloadUsers(profiles: profiles!)
+                }
+            }
+            break
         }
     }
 
